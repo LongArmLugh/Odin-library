@@ -1,0 +1,31 @@
+:root {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: inherit;
+    margin: inherit;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#head-text {
+    flex-grow: 1;
+    height: 10rem;
+    line-height: 10rem;
+    text-align: center;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.466);
+}
+
+span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
