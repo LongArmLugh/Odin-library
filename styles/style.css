@@ -1,3 +1,5 @@
+/* TODO > style the checkmarks */ 
+
 :root {
     padding: 0;
     margin: 0;
@@ -7,9 +9,13 @@
 body {
     padding: inherit;
     margin: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 header {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,4 +34,23 @@ span {
     vertical-align: middle;
     line-height: normal;
 }
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border-top: 3px solid #ddd;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+thead {
+    background-color: #ddd;
+    border-bottom: rgba(0, 0, 0, 0.466) solid 2px;
+}
+
 
