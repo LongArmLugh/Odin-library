@@ -19,6 +19,18 @@ function load() {
         // remove prop from Book obj
         table.appendChild(tr);
     });
+
+    const addBtn = document.getElementById("add-btn");
+    const bgModal = document.querySelector('.bg-modal');
+    console.log('addBtn', addBtn);
+    console.log('bgModal', bgModal);
+    addBtn.addEventListener('click', function() {
+        bgModal.style.display = "flex";
+    });
+
+    document.querySelector("#close").addEventListener("click", function() {
+        bgModal.style.display = "none";
+    });
     //const tr = document.createElement("tr"); // in i loop
     //const td = document.createElement("td"); // in j loop
 }

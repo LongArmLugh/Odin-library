@@ -12,27 +12,50 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 3rem;
 }
 
 header {
     width: 100%;
+    height: 36vh;
+    background-image: url(../images/bokshelf.jpg);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 3rem;
 }
 
 #head-text {
-    flex-grow: 1;
-    height: 10rem;
-    line-height: 10rem;
-    text-align: center;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.466);
+    margin: 1.6rem;
+    font-size: 3rem;
+    /* border-bottom: 2px solid rgba(0, 0, 0, 0.466); */
 }
 
 span {
-    display: inline-block;
+    /* display: inline-block;
     vertical-align: middle;
-    line-height: normal;
+    line-height: normal; */
+    color: white;
+    background-color: rgba(0, 0, 0, 0.733);
+    padding: 2px 8px;
+
+}
+
+#add-btn {
+    margin-bottom: 1.4rem;
+    border: none;
+    font-size: larger;
+    background: black;
+    color: rgb(255, 255, 255);
+    border-bottom: 2px solid rgb(146, 146, 146);
+    border-right: 2px outset rgb(146, 146, 146);
+    cursor: pointer;
+    /* border-style:  */
 }
 
 table {
@@ -53,4 +76,83 @@ thead {
     border-bottom: rgba(0, 0, 0, 0.466) solid 2px;
 }
 
+/* Add Book Pop up modal */
+.bg-modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
 
+.modal-content {
+    width: 500px;
+    height: 300px;
+    background-color: white;
+    border-radius: 4px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+}
+
+#close {
+    position: absolute;
+    font-size: 31px;
+    transform: rotate(45deg);
+    right: 8px;
+    top: 3px;
+    cursor: pointer;
+}
+
+.img-holder {
+    width: 80px;
+    height: 80px;
+    border-radius: 30px;
+    background-color: tomato;
+    position: relative;
+    left: calc(50% - 40px);
+    margin: 1rem 0;
+}
+
+#add-book {
+    display: flex;
+    flex-direction: column;
+}
+
+ #add-book div {
+    margin-bottom: 10px;
+  }
+
+#add-book label {
+  display: inline-block;
+  width: calc(25% - 1rem);
+  text-align: right;
+}
+
+#add-book input {
+
+    margin-left: 1rem;
+    width: 50%;
+}
+
+#add-book input[type="text"] {
+    border: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.541);
+}
+
+#add-book-submit {
+    display: flex;
+    justify-content: center;
+}
+
+#add-book-submit input {
+    flex-basis: content;
+    margin-left: 0;
+}
+/* End Modal */

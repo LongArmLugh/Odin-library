@@ -11,6 +11,7 @@
 <body>
     <header>
         <h1 id="head-text"><span>My Library</span></h1>
+        <button id="add-btn">Add a book</button>
     </header>
     <main>
         <table id="book-table">
@@ -21,29 +22,24 @@
                 <th>read</th>
                 <th>remove</th>
             </thead>
-            <!-- <tr>
-                <td>The Comedy</td>
-                <td>Botta Laugh</td>
-                <td>219</td>
-                <td><input type="checkbox"></td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>The Tragedy</td>
-                <td>Mr Tears</td>
-                <td>219</td>
-                <td><input type="checkbox"></td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>The Drama</td>
-                <td>Snooty Name</td>
-                <td>219</td>
-                <td><input type="checkbox"></td>
-                <td>0</td> -->
-            </tr>
+            <!--scripts.js generates book table contents here-->
         </table>
     </main>
+
+    <!-- Modal add book form -->
+    <div class="bg-modal">
+        <div class="modal-content">
+            <div id="close">+</div>
+            <div class="img-holder"></div>
+            <form action="" id="add-book">
+                <div><label for="title">Title</label><input type="text" name="title" placeholder="title"></div>
+                <div><label for="author">Author</label><input type="text" name="author" placeholder="author"></div>
+                <div><label for="page-count">Page Count</label><input type="text" name="page-count" placeholder="page count"></div>
+                <div><label for="is-read">Read?</label><input type="checkbox" name="is-read"></div>
+                <div id="add-book-submit"><input type="submit"></div>
+            </form>
+        </div>
+    </div>
 
 </body>
 </html>
