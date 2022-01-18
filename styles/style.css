@@ -13,6 +13,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 3rem;
+    background-color: rgb(221, 221, 221);
 }
 
 header {
@@ -28,6 +29,7 @@ header {
     justify-content: center;
     align-items: center;
     gap: 3rem;
+    
 }
 
 #head-text {
@@ -50,10 +52,14 @@ span {
     margin-bottom: 1.4rem;
     border: none;
     font-size: larger;
-    background: black;
+    /* background: black;
     color: rgb(255, 255, 255);
     border-bottom: 2px solid rgb(146, 146, 146);
-    border-right: 2px outset rgb(146, 146, 146);
+    border-right: 2px outset rgb(146, 146, 146); */
+    color: white;
+    background-color: #003C63;
+    border: 1px solid white;
+    border-radius: 30px;
     cursor: pointer;
     /* border-style:  */
 }
@@ -63,6 +69,12 @@ table {
     border-collapse: collapse;
     width: 100%;
     border-top: 3px solid #ddd;
+    background-color: white;
+}
+
+table td:nth-child(1), table td:nth-child(2) {
+    
+    width: 12em;
 }
 
 td, th {
@@ -72,8 +84,10 @@ td, th {
 }
 
 thead {
-    background-color: #ddd;
-    border-bottom: rgba(0, 0, 0, 0.466) solid 2px;
+    border: none;
+    background-color: black;
+    color: white;
+    border-bottom: rgba(255, 255, 255, 0.418) solid 4px;
 }
 
 /* Add Book Pop up modal */
@@ -111,10 +125,16 @@ thead {
 }
 
 .img-holder {
-    width: 80px;
+    /* width: 80px;
     height: 80px;
     border-radius: 30px;
-    background-color: tomato;
+    background-color: #580063; */
+    width: 80px;
+    height: 80px;
+    background-image: url(../images/books-icon.jpeg);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
     position: relative;
     left: calc(50% - 40px);
     margin: 1rem 0;
