@@ -83,6 +83,11 @@ table {
 #row-holder {
     display: contents;
 }
+
+#row-holder > td > button {
+    background-color: #D1D1D1;
+}
+
 table td:nth-child(1), table td:nth-child(2) {
     
     width: 12em;

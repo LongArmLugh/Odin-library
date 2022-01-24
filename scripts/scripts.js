@@ -1,5 +1,17 @@
 'use strict';
-// TODO goto line 144
+
+/*
+gray out buttons on row-holder
+first version done! almost, add autofocus on add-book modal, 
+DELETE sample array
+reset form info after submition
+future>
+  catch duplicates
+  sum books read
+  sum pages read
+  turn into cards
+*/
+
 console.log('Hello');
 
 function load() {
@@ -23,6 +35,9 @@ function load() {
     // Open Modal action
     addBtn.addEventListener('click', function() {
         bgModal.style.display = "flex";
+        const firsInput = document.getElementById('add-book').firstElementChild.childNodes[1];
+        console.log(firsInput);
+        firsInput.select();
     });
 
     // Close modal action
@@ -37,6 +52,8 @@ function load() {
         e.preventDefault();
 
         const formData = new FormData(addBookForm);
+
+        addBookForm.reset();
         console.table(formData);
 
         const title = formData.get('title');
@@ -53,11 +70,7 @@ function load() {
     });
 } // End load()
 
-let myLibrary = [
-    {title: "hobbit", author: "tolkien", pageCount: 234, isRead: "on"},
-    {title: "dragon", author: "smaug", pageCount: 43, isRead: "on"},
-    {title: "Stuka", author: "Rudell", pageCount: 43, isRead: null},
-];
+let myLibrary = [];
 
 load();
 
@@ -105,16 +118,13 @@ function formatTable(parent) {
     if (myLibrary.length > 0) {
         document.getElementById('row-holder').style.display = 'none';
     }
-    
+
     while (parent.lastChild && parent.lastElementChild.id !== 'row-holder') {
         parent.removeChild(parent.lastChild); // Also deletes the comments
                                               // and mysterious #texts
     }
 
 }
-
-// const rowHolder = document.getElementById('row-holder');
-// rowHolder.style.display = 'none';
 
 function drawTable() {
 
