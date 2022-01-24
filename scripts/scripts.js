@@ -90,7 +90,7 @@ function removeBook(event) {
     }
     console.log(myLibrary.length);
     if (myLibrary.length === 0) {
-        rowHolder.style.display = 'block';
+        rowHolder.style.display = 'contents';
     }
     drawTable();
 }
@@ -100,15 +100,17 @@ function addBookToLibrary(title, author, pageCount, isRead) {
 }
 
 function formatTable(parent) {
+    // I was unintentionally deleting the table body
     // Deletes table rows without deleting head, parent is the table element
-    // while (parent.lastChild && parent.lastChild.nodeName !== 'THEAD') {
-    //     parent.removeChild(parent.lastChild); // Also deletes the comments
-    //                                           // and mysterious #texts
-    // // }
-    while (parent.lastChild && parent.lastChild !== 'row-holder' && parent.lastChild.nodeName !== 'THEAD') {
+    if (myLibrary.length > 0) {
+        document.getElementById('row-holder').style.display = 'none';
+    }
+    
+    while (parent.lastChild && parent.lastElementChild.id !== 'row-holder') {
         parent.removeChild(parent.lastChild); // Also deletes the comments
                                               // and mysterious #texts
     }
+
 }
 
 // const rowHolder = document.getElementById('row-holder');
@@ -118,9 +120,9 @@ function drawTable() {
 
 
     console.log("Drawing table");
-    const table = document.getElementById("book-table");
+    const tableBody = document.getElementById("book-table-body");
 
-    formatTable(table);
+    formatTable(tableBody);
     myLibrary.forEach( (book, index) => {
         const tr = document.createElement("tr");
         for (const [prop, val] of Object.entries(book)) {
@@ -154,7 +156,7 @@ function drawTable() {
         td.addEventListener("click", removeBook); // By using data-id we avoid duplicates
         tr.appendChild(td);
 
-        table.appendChild(tr);
+        tableBody.appendChild(tr);
     });
 }
 console.dir(myLibrary);
