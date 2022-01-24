@@ -1,11 +1,8 @@
 'use strict';
 
 /*
-gray out buttons on row-holder
-first version done! almost, add autofocus on add-book modal, 
-DELETE sample array
-reset form info after submition
 future>
+  sessions
   catch duplicates
   sum books read
   sum pages read
@@ -17,10 +14,6 @@ console.log('Hello');
 function load() {
     console.log('Loading');
 
-    // Load toggle
-    // GIVEN that a page is loading the js file and eventlisteners are being assigned
-    // WHEN it's time to load the isRead checks
-    // THEN add the toggleReads function to the toggle read-check class elements
     const toggleReads = document.getElementsByClassName("read-check");
     for (const el of toggleReads) {
         console.log("isRead: " + el.checked);
@@ -73,19 +66,6 @@ function load() {
 let myLibrary = [];
 
 load();
-
-//Function and Object definitions
-// function toggleRead(event) {
-//     console.log(event.currentTarget.firstChild.checked);
-//     console.log(`click ${Object.entries(book)}`);
-//     console.log(`td: ${event.currentTarget.firstChild.checked}`);
-//     if (event.currentTarget.firstChild.checked) {
-//         book.isRead = "on"; // to make this work refference myLibrary and search the appropriate object.
-//     } else {
-//         book.isRead = null;
-//     }
-//     console.log(`click ${Object.entries(book)}`);
-// }
 
 function Book(title, author, pageCount, isRead) {
     this.title = title;
