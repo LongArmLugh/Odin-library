@@ -64,6 +64,14 @@ span {
     /* border-style:  */
 }
 
+.remove-btn {
+    color: white;
+    background-color: #0075FF;
+    border: 1px solid white;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -75,6 +83,10 @@ table {
 table td:nth-child(1), table td:nth-child(2) {
     
     width: 12em;
+}
+
+table td:nth-child(4) {
+    text-align: center;
 }
 
 td, th {

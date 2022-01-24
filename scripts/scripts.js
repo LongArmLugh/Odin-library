@@ -1,13 +1,19 @@
 'use strict';
-
+// TODO goto line 144
 console.log('Hello');
 
 function load() {
     console.log('Loading');
 
-    // Load table
-    drawTable();
-
+    // Load toggle
+    // GIVEN that a page is loading the js file and eventlisteners are being assigned
+    // WHEN it's time to load the isRead checks
+    // THEN add the toggleReads function to the toggle read-check class elements
+    const toggleReads = document.getElementsByClassName("read-check");
+    for (const el of toggleReads) {
+        console.log("isRead: " + el.checked);
+    }
+    
     // Open and close add book modal form
     const addBtn = document.getElementById("add-btn");
     const bgModal = document.querySelector('.bg-modal');
@@ -31,6 +37,7 @@ function load() {
         e.preventDefault();
 
         const formData = new FormData(addBookForm);
+        console.table(formData);
 
         const title = formData.get('title');
         const author = formData.get('author');
@@ -47,13 +54,25 @@ function load() {
 } // End load()
 
 let myLibrary = [
-    {title: "hobbit", author: "tolkien", pageCount: 234, isRead: true},
-    {title: "dragon", author: "smaug", pageCount: 43, isRead: false},
-    {title: "Stuka", author: "Rudell", pageCount: 43, isRead: false},
-
+    {title: "hobbit", author: "tolkien", pageCount: 234, isRead: "on"},
+    {title: "dragon", author: "smaug", pageCount: 43, isRead: "on"},
+    {title: "Stuka", author: "Rudell", pageCount: 43, isRead: null},
 ];
 
 load();
+
+//Function and Object definitions
+// function toggleRead(event) {
+//     console.log(event.currentTarget.firstChild.checked);
+//     console.log(`click ${Object.entries(book)}`);
+//     console.log(`td: ${event.currentTarget.firstChild.checked}`);
+//     if (event.currentTarget.firstChild.checked) {
+//         book.isRead = "on"; // to make this work refference myLibrary and search the appropriate object.
+//     } else {
+//         book.isRead = null;
+//     }
+//     console.log(`click ${Object.entries(book)}`);
+// }
 
 function Book(title, author, pageCount, isRead) {
     this.title = title;
@@ -62,43 +81,79 @@ function Book(title, author, pageCount, isRead) {
     this.isRead = isRead;
 }
 
-function removeBook(title, array) {
-    const index = array.findIndex(x => x.title === title);
-    // findIndex returns -1 if item not found
+function removeBook(event) {
+    const index = event.currentTarget.firstChild.dataset.id;
+    const rowHolder = document.getElementById('row-holder');
+    console.log(index);
     if (index >= 0) {
-        array.splice(index, 1);
+    myLibrary.splice(index, 1);
     }
+    console.log(myLibrary.length);
+    if (myLibrary.length === 0) {
+        rowHolder.style.display = 'block';
+    }
+    drawTable();
 }
 
 function addBookToLibrary(title, author, pageCount, isRead) {
     myLibrary.push(new Book(title, author, pageCount, isRead));
 }
 
-function deleteChildNodes(parent) {
-    while (parent.lastChild && parent.lastChild.nodeName !== 'THEAD') {
+function formatTable(parent) {
+    // Deletes table rows without deleting head, parent is the table element
+    // while (parent.lastChild && parent.lastChild.nodeName !== 'THEAD') {
+    //     parent.removeChild(parent.lastChild); // Also deletes the comments
+    //                                           // and mysterious #texts
+    // // }
+    while (parent.lastChild && parent.lastChild !== 'row-holder' && parent.lastChild.nodeName !== 'THEAD') {
         parent.removeChild(parent.lastChild); // Also deletes the comments
                                               // and mysterious #texts
     }
 }
+
+// const rowHolder = document.getElementById('row-holder');
+// rowHolder.style.display = 'none';
+
 function drawTable() {
-    // Requires deleteChildNodes 
-    //   consider moving out of function
+
+
     console.log("Drawing table");
     const table = document.getElementById("book-table");
-    
-    deleteChildNodes(table);
-    myLibrary.forEach( (book) => {
+
+    formatTable(table);
+    myLibrary.forEach( (book, index) => {
         const tr = document.createElement("tr");
-        for (const key in book) {
+        for (const [prop, val] of Object.entries(book)) {
             const td = document.createElement("td");
-            td.innerText = book[key];
-            tr.appendChild(td);
+            if (prop === "isRead") {
+                console.log(`reading isRead for ${book}`);
+                td.innerHTML = `<input type="checkbox" class="read-check" data-id="${index}">`;
+                td.addEventListener("click", (event) => { // Tried making this a seperate 
+                                                            // handler but failed to pass more params
+                    console.log(event.currentTarget.firstChild.checked);
+                    console.log(`click ${Object.entries(book)}`);
+                    console.log(`td: ${td.firstChild.checked}`);
+                    if (td.firstChild.checked) {
+                        book.isRead = "on";
+                    } else {
+                        book.isRead = null;
+                    }
+                    console.log("event: ", event);
+                    console.log(`click ${Object.entries(book)}`);
+                });
+                tr.appendChild(td);
+            } else {
+                td.innerText = val;
+                tr.appendChild(td);
+            }
         }
-        // TODO
-        // create checkbox
-        // add associated event handler
-        // append to row
-        // remove prop from Book obj
+
+        // Adding remove button and associated event listener
+        const td = document.createElement("td");
+        td.innerHTML = `<button class="remove-btn" data-id=\"${index}\">Remove</button>`;
+        td.addEventListener("click", removeBook); // By using data-id we avoid duplicates
+        tr.appendChild(td);
+
         table.appendChild(tr);
     });
 }
